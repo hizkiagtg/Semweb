@@ -4,6 +4,7 @@ def seach_by_provider(provider):
     g = Graph()
     g.parse('coursera_onto.ttl', format='turtle')
     # Example SPARQL query
+    provider = provider.replace(" ", "")
     query = f"""
     prefix : <https://www.coursera.org/>
     prefix owl: <http://www.w3.org/2002/07/owl#>
@@ -16,7 +17,7 @@ def seach_by_provider(provider):
     select distinct ?course ?price ?title ?skills ?ratings ?reviews ?level ?type ?duration
     where {{
         ?course :price ?price ;
-                :course_by ?{provider} ;
+                :course_by :{provider} ;
                 :title ?title;
                 :skills ?skills ;
                 :ratings ?ratings ;
