@@ -25,7 +25,7 @@ def seach_by_provider(provider):
                 :type ?type ;
                 :duration ?duration .
 
-        filter (lcase(?provider) = "yale university")
+        filter (lcase(?provider) = "{provider}")
     }}
     """
     results = g.query(query)
