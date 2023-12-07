@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-striped table-hover" border="4">
+    <thead class="table-dark">
+        <tr>
+            <th>Course</th>
+            <th>Price</th>
+            <th>Title</th>
+            <th>Skills</th>
+            <th>Ratings</th>
+            <th>Reviews</th>
+            <th>Level</th>
+            <th>Type</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+    {% for result in results %}
+    <tr>
+        <td>{{result.course}}</td>
+        <td>{{result.price}}</td>
+        <td>{{result.title}}</td>
+        <td>{{result.skills}}</td>
+        <td>{{result.ratings}}</td>
+        <td>{{result.reviews}}</td>
+        <td>{{result.level}}</td>
+        <td>{{result.type}}</td>
+        <td>{{result.duration}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
+{% endblock content %}

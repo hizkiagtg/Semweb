@@ -2,9 +2,9 @@ from rdflib import Graph
 
 def seach_by_provider(provider):
     g = Graph()
-    g.parse('coursera_onto.ttl', format='turtle')
-    # Example SPARQL query
-    provider = provider.replace(" ", "")
+    g.parse('coursera_csv (1).ttl', format='turtle')
+
+    # Query for retrieving course by provider
     query = f"""
     prefix : <https://www.coursera.org/>
     prefix owl: <http://www.w3.org/2002/07/owl#>
