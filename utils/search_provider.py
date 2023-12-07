@@ -16,16 +16,16 @@ def seach_by_provider(provider):
 
     select distinct ?course ?price ?provider ?title ?skills ?ratings ?reviews ?level ?type ?duration
     where {{
-        ?course :price ?price ;
-                :course_by ?provider ;
-                :title ?title;
-                :skills ?skills ;
-                :ratings ?ratings ;
-                :level ?level ;
-                :type ?type ;
-                :duration ?duration .
+    ?course :price ?price ;
+            :course_by ?provider ;
+            :title ?title;
+            :skills ?skills ;
+            :ratings ?ratings ;
+            :level ?level ;
+            :type ?type ;
+            :duration ?duration .
 
-        filter (lcase(?provider) = "{provider}")
+    filter(contains(lcase(?provider), lcase("{provider}")))
     }}
     """
     results = g.query(query)
