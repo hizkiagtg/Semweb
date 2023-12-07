@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html>
 <head>
 	<title>Coursera</title>
@@ -15,33 +16,40 @@
 <body>
 
 	<section class="s1"  style="height: 100vh;">
-		<div class="main-container">
+		<div class="main-container" >
 			<div class="greeting-wrapper">
 				<h1>Coursera Search Course</h1>
 			</div>
+
 			<div class="intro-wrapper">
 				{% include 'navbar.html' %}
+				<div class="search-wrapper">
+					<form id="searchForm" method="post" action="{% url 'coursera_search:search_query' %}">
+						{% csrf_token %}
+						<div class="search-container">
+							{{ form.sms_text|attr:"id:smsInput-1" }}
+							{{ form.search_type|attr:"id:searchType" }}
+							<input id="submit-btn-2" type="submit" value="Search" style="margin-right: 6%;">
+						</div>
+					</form>
+				</div>
 				<div class="left-column">
-					<h5 style="text-align: center;line-height: 0;"></h5>
-                    <form id="searchForm" method="post" data-url="">
-                        {% csrf_token %}
-                        <h3>Search Your Course: </h3>
-                        <div>
-                            <textarea id="smsInput" name="sms_text" rows="1" spellcheck="false"></textarea>
-                        </div>
-                        <input id="submit-btn" type="submit" value="Search">
-                    </form>
-                    
+					<div class="result-table">
+						<nav>
+							<ul>
+								{% for result in results %}
+									<li>{{ result.title }}</li>
+								{% endfor %}
+							</ul>
+						</nav>
+					</div>
 				</div>
 				<div class="right-column">
-					<div id="preview-shadow">
-						<div id="preview">
-							<div id="corner-tl" class="corner"></div>
-							<div id="corner-tr" class="corner"></div>
-
-							<div id="corner-br" class="corner"></div>
-							<div id="corner-bl" class="corner"></div>
-						</div>
+					<div id="preview">
+						<div id="corner-tl" class="corner"></div>
+						<div id="corner-tr" class="corner"></div>
+						<div id="corner-br" class="corner"></div>
+						<div id="corner-bl" class="corner"></div>
 					</div>
 				</div>
 			</div>

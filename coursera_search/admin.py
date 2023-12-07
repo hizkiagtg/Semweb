@@ -1,6 +1,5 @@
 from django.contrib import admin
-from coursera_search.models import  Provider, Course
+from coursera_search.models import  Course
 
 # Register your models here.
-admin.site.register(Provider)
 admin.site.register(Course)
