@@ -14,16 +14,18 @@ def seach_by_provider(provider):
     prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     prefix vcard: <http://www.w3.org/2006/vcard/ns#>
 
-    select distinct ?course ?price ?title ?skills ?ratings ?reviews ?level ?type ?duration
+    select distinct ?course ?price ?provider ?title ?skills ?ratings ?reviews ?level ?type ?duration
     where {{
         ?course :price ?price ;
-                :course_by :{provider} ;
+                :course_by ?provider ;
                 :title ?title;
                 :skills ?skills ;
                 :ratings ?ratings ;
                 :level ?level ;
                 :type ?type ;
                 :duration ?duration .
+
+        filter (lcase(?provider) = "yale university")
     }}
     """
     results = g.query(query)
