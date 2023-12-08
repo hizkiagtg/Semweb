@@ -31,3 +31,9 @@ def search_query(request):
         form = SearchForm()
 
     return render(request, 'index.html', {'form': form})
+
+def get_search_results(request, search_by, query):
+    if request.method == 'GET':
+        results = query_rdf(search_by, query)
+        return JsonResponse(results, safe=False)
+    return JsonResponse({"success": False}, status=400)

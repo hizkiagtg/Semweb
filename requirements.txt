@@ -11,6 +11,7 @@ pytz==2022.2.1
 rdflib==7.0.0
 requests==2.28.1
 six==1.16.0
+sparqlwrapper==2.0.0
 sqlparse==0.4.2
 typed-ast==1.5.5
 urllib3==1.26.11

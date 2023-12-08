@@ -14,4 +14,4 @@ class Course(models.Model):
     duration    = models.TextField() 
 
     def __str__(self):
-        return self.title
+        return str(self.title)

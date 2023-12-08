@@ -5,7 +5,7 @@ import json
 class RDFHandle:
     def __init__(self):
         self.sparql = SPARQLWrapper(
-            "http://localhost:9999/blazegraph/namespace/kb/sparql"
+            "http://35.247.170.211:9999/blazegraph/namespace/kb/sparql"
         )
         self.sparql.setReturnFormat(JSON)
 
@@ -91,6 +91,7 @@ class RDFHandle:
                 :title ?title;
                 :skills ?skills ;
                 :ratings ?ratings ;
+                :reviews ?reviews ;
                 :level ?level ;
                 :type ?type ;
                 :duration ?duration .

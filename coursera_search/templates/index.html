@@ -11,7 +11,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
-	<link id="theme-style" rel="stylesheet" type="text/css" href="">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/loader.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -24,30 +25,53 @@
 			<div class="intro-wrapper">
 				{% include 'navbar.html' %}
 				<div class="search-wrapper">
-					<form id="searchForm" method="post" action="{% url 'coursera_search:search_query' %}">
+					<form id="searchForm">
 						{% csrf_token %}
 						<div class="search-container">
 							{{ form.sms_text|attr:"id:smsInput-1" }}
 							{{ form.search_type|attr:"id:searchType" }}
-							<input id="submit-btn-2" type="submit" value="Search" style="margin-right: 6%;">
+							<button id="submit-btn-2" type="submit" style="margin-right: 6%;">Search</button>
 						</div>
 					</form>
 				</div>
 				<div class="left-column">
+					<div class="pac-man"></div>
 					<div class="result-table">
 						<nav>
 							<ul>
-								{% for result in results %}
-									<li class="result-item" data-details="">
-                                        <a href="#">{{ result.title.value }}</a>
-                                    </li>
-								{% endfor %}
 							</ul>
 						</nav>
 					</div>
 				</div>
-				
-				
+				<!-- right column is for the details of the course -->
+				<div class="right-column">
+					<div class="course-content">
+						<div class="course-details">
+							<div class="course-title">
+								<h2>Cybersecurity for Everyone</h2>
+							</div>
+							<div class="course-instructor">
+								<p>Instructor: University of Maryland, College Park</p>
+							</div>
+							<div class="course-rating">
+								<p>4.7 ⭐ (624 reviews)</p>
+							</div>
+							<div class="course-link">
+								<a href="#" target="_blank">View Course</a>
+							</div>
+							<div class="course-info">
+								<p>Beginner · Course · 1-3 Months</p>
+							</div>
+							<div class="course-skill">
+								<p>Skill: Cyberattacks, Security Engineering, Computer Networking, Computer Architecture, Network Architecture</p>
+							</div>
+							<div class="addition-info">
+								<h4>About: Maryland</h4>
+								<p>Maryland (US: /ˈmɛrɪlənd/ MERR-il-ənd) is a state in the Mid-Atlantic region of the United States. It shares borders with Virginia, West Virginia, and the District of Columbia to its south and west; Pennsylvania to its north; and Delaware and the Atlantic Ocean to its east. Baltimore is the largest city in the state, and the capital is Annapolis. Among its occasional nicknames are Old Line State, the Free State, and the Chesapeake Bay State. It is named after Henrietta Maria, the French-born queen of England, Scotland, and Ireland, who was known then in England as Mary.</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -57,5 +81,64 @@
 	</script>
 
 	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+	<script>
+		// Get the search input
+		async function getSearchInput(search_by, search_text) {
+			return fetch(`/query/${search_by}/${search_text}/`)
+				.then(response => response.json())
+		}
+
+		// Show search results
+		async function showSearchResults(search_by, search_text) {
+			$('.right-column').hide();
+			$('.result-item').remove();
+			$('.pac-man').show();
+			let results = await getSearchInput(search_by, search_text);
+			$('.result-item').remove();
+			$('.right-column').hide();
+			$('.pac-man').hide();
+			// make the id from 1
+			results.forEach((result, index) => {
+				result.id = index + 1;
+			})
+			// show the results
+			results.forEach(result => {
+				$('.result-table ul').append(`
+					<li class="result-item" id="${result.id}">
+						<a>${result.title.value} · ${result.ratings.value} ⭐</a>
+					</li>
+				`)
+			})
+			// add click event to each result
+			results.forEach(result => {
+				$(`#${result.id}`).click(function() {
+					showCourseDetails(result);
+				})
+			})
+		}
+
+		// Show course details
+		function showCourseDetails(course) {
+			$('.course-title h2').text(course.title.value);
+			$('.course-instructor p').text(`Instructor: ${course.label.value}`);
+			$('.course-rating p').text(`${course.ratings.value} ⭐ ${course.reviews.value}`);
+			$('.course-link a').attr('href', course.course.value);
+			$('.course-info p').text(`${course.level.value} · ${course.type.value} · ${course.duration.value}`);
+			$('.course-skill p').text(`Skill: ${course.skill.value}`
+			$('.addition-info h4').text(`About: ${course.label.value}`);
+			$('.addition-info p').text(course.comment.value);
+			$('.right-column').show();
+		}
+
+		// Button click event
+		$('#submit-btn-2').click(function(e) {
+			e.preventDefault();
+			let search_by = $('#searchType').val();
+			let search_text = $('#smsInput-1').val();
+			showSearchResults(search_by, search_text);
+		})
+	</script>
+
 </body>
 </html>
