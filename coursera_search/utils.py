@@ -151,7 +151,7 @@ class RDFHandle:
         self.sparql.setQuery(query)
         return self.sparql.queryAndConvert()["results"]["bindings"]
     
-    def search_by_skills(self, skill):
+    def search_by_skills(self, skills):
         # Query for retrieving course by provider
         query = f"""
         prefix : <https://www.coursera.org/>
@@ -176,7 +176,7 @@ class RDFHandle:
 
         ?provider :name ?provider_name .
 
-        filter(contains(lcase(?skill), lcase("{skill}")))
+        filter(contains(lcase(?skills), lcase("{skills}")))
         SERVICE <https://dbpedia.org/sparql> {{
             OPTIONAl {{
             ?provider rdfs:label ?label ;
