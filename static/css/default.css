@@ -51,13 +51,6 @@ a{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-bottom: 90px;
-}
-
-.course-content {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 nav {
@@ -69,7 +62,7 @@ nav {
 }
 
 nav ul {
-	height: 600px;
+	height: 220px;
 	overflow: hidden;
 	overflow-y: scroll;
 	-ms-overflow-style: none;
@@ -112,7 +105,6 @@ h6 { font-size: 16px;}
 .main-container{
 	width: 1200px;
 	margin: 0 auto;
-	padding-bottom: 90px;
 }
 
 
@@ -273,6 +265,7 @@ h6 { font-size: 16px;}
 
 .left-column{
 	grid-area: left-column;
+	padding-bottom: 50px;
 	position: relative;
 	
 }
@@ -349,12 +342,12 @@ h6 { font-size: 16px;}
 }
 
 .right-column{
-	display: none;
 	grid-area: right-column;
+	display: grid;
 	align-content: center;
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-bottom: 90px;
+
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 
@@ -615,7 +608,6 @@ h6 { font-size: 16px;}
 @media screen and (max-width: 1200px){
 	.main-container{
 		width: 95%;
-		padding-bottom: 90px;
 	}
 }
 
@@ -634,10 +626,6 @@ h6 { font-size: 16px;}
 		justify-content: center;
 	}
 
-	.main-container{
-		width: 95%;
-		padding-bottom: 60px;
-	}
 }
 
 @media screen and (max-width: 400px){
