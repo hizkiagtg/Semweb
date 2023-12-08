@@ -124,6 +124,7 @@
 			$('.course-title h2').text(course.title.value);
 			$('.course-instructor p').text(`Instructor: ${course.label.value}`);
 			$('.course-rating p').text(`${course.ratings.value} ⭐ ${course.reviews.value}`);
+			$('.course-link a').text('Go to course');
 			$('.course-link a').attr('href', course.course.value);
 			$('.course-info p').text(`${course.level.value} · ${course.type.value} · ${course.duration.value}`);
 			$('.course-skill p').text(`Skills: ${course.skills.value}`);
