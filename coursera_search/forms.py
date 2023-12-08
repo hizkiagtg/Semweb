@@ -8,8 +8,7 @@ class SearchForm(forms.Form):
         ('skills', 'by Skills'),
         ('ratings', 'by Ratings'),
         ('level', 'by Level'),
-        ('type', 'by Type'),
-        ('duration', 'by Duration'),
+        ('type', 'by Type')
     ]
 
     sms_text = forms.CharField(
