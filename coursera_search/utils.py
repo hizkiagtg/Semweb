@@ -35,7 +35,7 @@ class RDFHandle:
         
         ?provider :name ?provider_name .
 
-        filter(contains(lcase(?provider_name), lcase("stanford")))
+        filter(contains(lcase(?provider_name), lcase("{provider}")))
         SERVICE <https://dbpedia.org/sparql> {{
             OPTIONAl {{
             ?provider rdfs:label ?label ;
