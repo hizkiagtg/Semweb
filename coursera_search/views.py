@@ -12,7 +12,7 @@ def home(request):
 
 @lru_cache(maxsize=None)  
 def query_rdf(search_by, query):
-    rdf = RDFHandle('coursera_csv (1).ttl', 'turtle')
+    rdf = RDFHandle()
     return rdf.search(search_by, query)
 
 def search_query(request):
