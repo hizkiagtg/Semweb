@@ -66,3 +66,60 @@ class RDFHandle:
         """
         result = self.graph.query(query)
         return result
+    
+    def search_by_skills(self, skills):
+    #Query for retrieving skills by skills
+        query = f"""
+            prefix : <https://www.coursera.org/>
+            prefix owl: <http://www.w3.org/2002/07/owl#>
+            prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            prefix xml: <http://www.w3.org/XML/1998/namespace>
+            prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+            prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+
+            select distinct ?course ?price ?provider ?title ?skills ?ratings ?reviews ?level ?type ?duration
+            where {{
+            ?course :price ?price ;
+                    :course_by ?provider ;
+                    :title ?title;
+                    :skills ?skills ;
+                    :ratings ?ratings ;
+                    :level ?level ;
+                    :type ?type ;
+                    :duration ?duration .
+
+            filter(contains(lcase(?skills), lcase("{skills}")))
+            }}
+            """
+        result = self.graph.query(query)
+        return result
+    
+    def search_by_level(self, level):
+    #Query for retrieving skills by level
+        query = f"""
+            prefix : <https://www.coursera.org/>
+            prefix owl: <http://www.w3.org/2002/07/owl#>
+            prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            prefix xml: <http://www.w3.org/XML/1998/namespace>
+            prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+            prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            prefix vcard: <http://www.w3.org/2006/vcard/ns#>
+
+            select distinct ?course ?price ?provider ?title ?skills ?ratings ?reviews ?level ?type ?duration
+            where {{
+            ?course :price ?price ;
+                    :course_by ?provider ;
+                    :title ?title;
+                    :skills ?skills ;
+                    :ratings ?ratings ;
+                    :level ?level ;
+                    :type ?type ;
+                    :duration ?duration .
+
+            filter(contains(lcase(?level), lcase("{level}")))
+            }}
+            """
+        result = self.graph.query(query)
+        return result
+
