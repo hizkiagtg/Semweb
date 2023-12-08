@@ -1,9 +1,13 @@
 from rdflib import Graph
+from SPARQLWrapper import JSON, SPARQLWrapper
+import json
 
 class RDFHandle:
-    def __init__(self, filename, format):
-        self.graph = Graph()
-        self.graph.parse(filename, format)
+    def __init__(self):
+        self.sparql = SPARQLWrapper(
+            "http://localhost:9999/blazegraph/namespace/kb/sparql"
+        )
+        self.sparql.setReturnFormat(JSON)
 
     def search(self, search_by, query):
         if search_by == 'course':
@@ -66,8 +70,8 @@ class RDFHandle:
         }}
         }}
         """
-        result = self.graph.query(query)
-        return result
+        self.sparql.setQuery(query)
+        return self.sparql.queryAndConvert()["results"]["bindings"]
         
     def search_by_course(self, course):
         # Query for retrieving course by provider
@@ -104,8 +108,8 @@ class RDFHandle:
         }}
         }}
         """
-        result = self.graph.query(query)
-        return result
+        self.sparql.setQuery(query)
+        return self.sparql.queryAndConvert()["results"]["bindings"]
         
     def search_by_price(self, price):
         # Query for retrieving course by provider
@@ -143,8 +147,8 @@ class RDFHandle:
         }}
         }}
         """
-        result = self.graph.query(query)
-        return result
+        self.sparql.setQuery(query)
+        return self.sparql.queryAndConvert()["results"]["bindings"]
     
     def search_by_skills(self, skill):
         # Query for retrieving course by provider
@@ -182,8 +186,8 @@ class RDFHandle:
         }}
         }}
         """
-        result = self.graph.query(query)
-        return result
+        self.sparql.setQuery(query)
+        return self.sparql.queryAndConvert()["results"]["bindings"]
     
     def search_by_ratings(self, ratings):
         # Query for retrieving course by provider
@@ -221,8 +225,8 @@ class RDFHandle:
         }}
         }}
         """
-        result = self.graph.query(query)
-        return result
+        self.sparql.setQuery(query)
+        return self.sparql.queryAndConvert()["results"]["bindings"]
     
     def search_by_level(self, level):
         # Query for retrieving course by provider
@@ -260,8 +264,8 @@ class RDFHandle:
         }}
         }}
         """
-        result = self.graph.query(query)
-        return result
+        self.sparql.setQuery(query)
+        return self.sparql.queryAndConvert()["results"]["bindings"]
     
     def search_by_type(self, type):
         # Query for retrieving course by provider
@@ -299,5 +303,5 @@ class RDFHandle:
         }}
         }}
         """
-        result = self.graph.query(query)
-        return result
+        self.sparql.setQuery(query)
+        return self.sparql.queryAndConvert()["results"]["bindings"]
