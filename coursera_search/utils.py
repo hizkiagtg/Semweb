@@ -22,7 +22,7 @@ class RDFHandle:
         prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         prefix vcard: <http://www.w3.org/2006/vcard/ns#>
 
-        select distinct ?course ?price ?provider ?title ?skills ?ratings ?reviews ?level ?type ?duration
+        select distinct ?course ?label ?comment ?price ?provider ?title ?skills ?ratings ?reviews ?level ?type ?duration
         where {{
         ?course :price ?price ;
                 :course_by ?provider ;
@@ -32,8 +32,18 @@ class RDFHandle:
                 :level ?level ;
                 :type ?type ;
                 :duration ?duration .
+        
+        ?provider :name ?provider_name .
 
-        filter(contains(lcase(?provider), lcase("{provider}")))
+        filter(contains(lcase(?provider_name), lcase("stanford")))
+        SERVICE <https://dbpedia.org/sparql> {{
+            OPTIONAl {{
+            ?provider rdfs:label ?label ;
+                        rdfs:comment ?comment .
+            FILTER(LANG(?label) = "en")
+            FILTER(LANG(?comment) = "en")
+            }}
+        }}
         }}
         """
         result = self.graph.query(query)
