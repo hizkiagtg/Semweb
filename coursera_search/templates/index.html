@@ -3,8 +3,9 @@
 {% load widget_tweaks %}
 <html>
 <head>
-	<title>Coursera</title>
+	<title>Coursera Search Course</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<meta description="Find your free course on Coursera" />
 
 	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 
@@ -48,26 +49,26 @@
 					<div class="course-content">
 						<div class="course-details">
 							<div class="course-title">
-								<h2>Cybersecurity for Everyone</h2>
+								<h2></h2>
 							</div>
 							<div class="course-instructor">
-								<p>Instructor: University of Maryland, College Park</p>
+								<p></p>
 							</div>
 							<div class="course-rating">
-								<p>4.7 ⭐ (624 reviews)</p>
+								<p></p>
 							</div>
 							<div class="course-link">
-								<a href="#" target="_blank">View Course</a>
+								<a href="#" target="_blank"></a>
 							</div>
 							<div class="course-info">
-								<p>Beginner · Course · 1-3 Months</p>
+								<p></p>
 							</div>
 							<div class="course-skill">
-								<p>Skill: Cyberattacks, Security Engineering, Computer Networking, Computer Architecture, Network Architecture</p>
+								<p></p>
 							</div>
 							<div class="addition-info">
-								<h4>About: Maryland</h4>
-								<p>Maryland (US: /ˈmɛrɪlənd/ MERR-il-ənd) is a state in the Mid-Atlantic region of the United States. It shares borders with Virginia, West Virginia, and the District of Columbia to its south and west; Pennsylvania to its north; and Delaware and the Atlantic Ocean to its east. Baltimore is the largest city in the state, and the capital is Annapolis. Among its occasional nicknames are Old Line State, the Free State, and the Chesapeake Bay State. It is named after Henrietta Maria, the French-born queen of England, Scotland, and Ireland, who was known then in England as Mary.</p>
+								<h4></h4>
+								<p></p>
 							</div>
 						</div>
 					</div>
@@ -125,7 +126,7 @@
 			$('.course-rating p').text(`${course.ratings.value} ⭐ ${course.reviews.value}`);
 			$('.course-link a').attr('href', course.course.value);
 			$('.course-info p').text(`${course.level.value} · ${course.type.value} · ${course.duration.value}`);
-			$('.course-skill p').text(`Skill: ${course.skill.value}`
+			$('.course-skill p').text(`Skill: ${course.skill.value}`);
 			$('.addition-info h4').text(`About: ${course.label.value}`);
 			$('.addition-info p').text(course.comment.value);
 			$('.right-column').show();
