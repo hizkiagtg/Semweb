@@ -38,20 +38,16 @@
 						<nav>
 							<ul>
 								{% for result in results %}
-									<li>{{ result.title }}</li>
+									<li class="result-item" data-details="">
+                                        <a href="#">{{ result.title }}</a>
+                                    </li>
 								{% endfor %}
 							</ul>
 						</nav>
 					</div>
 				</div>
-				<div class="right-column">
-					<div id="preview">
-						<div id="corner-tl" class="corner"></div>
-						<div id="corner-tr" class="corner"></div>
-						<div id="corner-br" class="corner"></div>
-						<div id="corner-bl" class="corner"></div>
-					</div>
-				</div>
+				
+				
 			</div>
 		</div>
 	</section>

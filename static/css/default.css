@@ -54,8 +54,9 @@ a{
 }
 
 nav {
-	width: 80%; 
+	width: 75%; 
 }
+
 ::-webkit-scrollbar { 
     display: none; 
 }
@@ -264,8 +265,20 @@ h6 { font-size: 16px;}
 
 .left-column{
 	grid-area: left-column;
-	padding-top:50px;
 	padding-bottom: 50px;
+	position: relative;
+	
+}
+
+.left-column::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px; 
+    background-color: #ccc; 
+    height: 90%; 
 }
 
 #profile_pic{
