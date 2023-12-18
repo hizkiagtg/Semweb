@@ -15,9 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/loader.css' %}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<body >
 
-	<section class="s1"  style="height: 100vh;">
+	<section class="s1" style="height: 100vh;">
 		<div class="main-container" >
 			<div class="greeting-wrapper">
 				<h1>Coursera Search Course</h1>
@@ -128,7 +128,8 @@
 			$('.course-link a').attr('href', course.course.value);
 			$('.course-info p').text(`${course.level.value} · ${course.type.value} · ${course.duration.value}`);
 			$('.course-skill p').text(`Skills: ${course.skills.value}`);
-			$('.addition-info h4').text(`About: ${course.label.value}`);
+			const aboutLink = $('<a>').attr('href', course.provider.value).text(course.label.value);
+    		$('.addition-info h4').text('About: ').append(aboutLink);
 			$('.addition-info p').text(course.comment.value);
 			$('.right-column').show();
 		}

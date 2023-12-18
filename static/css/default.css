@@ -116,7 +116,6 @@ h6 { font-size: 16px;}
 .main-container{
 	width: 1200px;
 	margin: 0 auto;
-	padding-bottom: 90px;
 }
 
 
@@ -132,8 +131,6 @@ h6 { font-size: 16px;}
 	background-color: var(--secondaryColor);
 	border:1px solid var(--borderColor);
 	border-radius:5px 5px 0 0;
-	height:fit-content;
-
 
 	-webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
 	-moz-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
@@ -358,7 +355,7 @@ h6 { font-size: 16px;}
 	align-content: center;
 	padding-left: 30px;
 	padding-right: 30px;
-	padding-bottom: 40px;
+	padding-bottom: 30px;
 }
 
 
@@ -619,7 +616,6 @@ h6 { font-size: 16px;}
 @media screen and (max-width: 1200px){
 	.main-container{
 		width: 95%;
-		padding-bottom: 90px;
 	}
 }
 
@@ -640,7 +636,6 @@ h6 { font-size: 16px;}
 
 	.main-container{
 		width: 95%;
-		padding-bottom: 60px;
 	}
 }
 
